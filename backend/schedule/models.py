@@ -28,7 +28,12 @@ class SchedulePayment(models.Model):
             (ins.pay_date.days >= timezone.now().days)
         ]
 
+class Transaction(models.Model):
+    reference = models.TextField()
+    payment = models.OneToOneField(SchedulePayment, on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return f'Transaction: {self.reference}'
 
 class PaidPayment(models.Model):
     date_paid = models.DateTimeField(auto_now_add=True)
