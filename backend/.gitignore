@@ -1,1 +1,2 @@
-./virenv
+./virenv/*
+/__pycache__/*
