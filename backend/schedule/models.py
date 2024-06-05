@@ -28,8 +28,9 @@ class SchedulePayment(models.Model):
             (ins.pay_date.days >= timezone.now().days)
         ]
 
-class Transaction(models.Model):
+class TransferReceipt(models.Model):
     reference = models.TextField()
+    status = models.CharField(max_length=16)
     payment = models.OneToOneField(SchedulePayment, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

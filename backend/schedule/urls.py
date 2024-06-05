@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.CreateSchedulePaymentAPIView.as_view(), name='create-schedule'),
+    path('bank-resolve/', views.resolve_account, name='resolve-account'),
 ]

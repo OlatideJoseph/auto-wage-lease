@@ -131,8 +131,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+# Celery settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
 # PAYSTACK Config
-PAYSTACK_API = ''
+PAYSTACK_API = os.getenv('PAYSTACK_API')
 # Email Config
 EMAIL_USER = os.getenv('MAIL_USER')
 
