@@ -136,12 +136,6 @@ USE_TZ = True
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
-CELERY_BEAT_SCHEDULE = {
-    'check_and_pay': {
-        'task': 'schedule.tasks.check_and_pay',
-        'schedule': '*/1'
-    }
-}
 # PAYSTACK Config
 PAYSTACK_API = os.getenv('PAYSTACK_API')
 # Email Config
