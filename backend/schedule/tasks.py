@@ -37,5 +37,5 @@ def check_pay_user():
                     f'Scheduled Transfer at {str(pay.pay_date)} succeas',
                     f'transfer successful for {pay.account_name}',
                     'no-reply@auto-wage-lease.com',
-                    pay.created_by.email
+                    [pay.created_by.email]
                 )
