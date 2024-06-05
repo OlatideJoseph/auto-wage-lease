@@ -10,6 +10,7 @@ class CreateSchedulePaymentAPIView(generics.CreateAPIView):
     queryset = models.SchedulePayment.objects.all()
 
 
+
 @decorators.api_view(['GET'])
 def resolve_account(request):
     '''

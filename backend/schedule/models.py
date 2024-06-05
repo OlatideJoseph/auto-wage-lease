@@ -9,10 +9,11 @@ class SchedulePayment(models.Model):
     bank_code = models.CharField(max_length=5)
     account_name = models.CharField(max_length=80)
     created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    amount = models.CharField(max_length=7, default='60000',
+            help_text='Must greater than 0 and must not have a letter preceded')
     created_on = models.DateTimeField(auto_now=True)
     has_paid = models.BooleanField(default=False)
     pay_date = models.DateTimeField(default=timezone.now)
-    auto_pay_after = models.BooleanField(default=False)
     
 
     def __str__(self) -> str:
@@ -28,13 +29,21 @@ class SchedulePayment(models.Model):
             (ins.pay_date.days >= timezone.now().days)
         ]
 
-class TransferReceipt(models.Model):
-    reference = models.TextField()
-    status = models.CharField(max_length=16)
-    payment = models.OneToOneField(SchedulePayment, on_delete=models.CASCADE)
+class TransferRecipient(models.Model):
+    recipient_code = models.CharField(max_length=60, unique=True)
+    payment = models.OneToOneField(SchedulePayment, on_delete=models.CASCADE, related_name='recipient')
 
     def __str__(self) -> str:
-        return f'Transaction: {self.reference}'
+        return f'Recipient Cose: {self.recipient_code}'
+
+class Transaction(models.Model):
+    reference = models.CharField(max_length=40, unique=True)
+    recipients = models.ForeignKey(TransferRecipient, on_delete=models.CASCADE, related_name='transactions')
+    status = models.TextField()
+    created_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f'Transaction {self.refrence} {status}'
 
 class PaidPayment(models.Model):
     date_paid = models.DateTimeField(auto_now_add=True)
