@@ -3,6 +3,7 @@ from .utils import initiate_transfer_payment as itp, finalize_transfer as ft
 from celery import shared_task
 from . import models
 from django.core.mail import send_mail
+from django.utils import timezone
 #celery tasks module/app to work across shared processes
 
 @shared_task

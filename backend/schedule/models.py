@@ -26,7 +26,7 @@ class SchedulePayment(models.Model):
     @classmethod
     def not_paid_today(cls):
         return [ins for ins in cls.not_paid() if \
-            (ins.pay_date.days >= timezone.now().days)
+            (ins.pay_date.day >= timezone.now().day)
         ]
 
 class TransferRecipient(models.Model):
@@ -42,6 +42,7 @@ class Transaction(models.Model):
     status = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
 
+
     def __str__(self) -> str:
         return f'Transaction {self.refrence} {status}'
 
@@ -51,3 +52,13 @@ class PaidPayment(models.Model):
 
     def __str__(self):
         return f'Paid Account:{self.schedule_pay.account} on {self.date_paid}'
+
+
+
+class FlutterWaveTransaction(models.Model):
+    trsc_id = models.PositiveIntegerField(null=False)
+    reference = models.CharField(max_length=80, unique=True)
+    payment = models.ForeignKey(SchedulePayment, on_delete=models.CASCADE, related_name='fw_transactions')
+
+    def __str__(self) -> str:
+        return 'FW -%d' %(self.trsc_id)

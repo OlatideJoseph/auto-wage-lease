@@ -1,2 +1,4 @@
-./virenv/*
-/__pycache__/*
+virenv/*
+__pycache__/*
+db.sqlite3
+

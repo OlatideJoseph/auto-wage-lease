@@ -56,3 +56,41 @@ def create_transfer_recipient(account_number: str, bank_code: str, account_name:
             headers={'Authorization': f'Bearer {settings.PAYSTACK_API}'})
     return resp.json()
 
+# Flutter Wave
+BASE_URL = "https://api.flutterwave.com/v3/" #v3 api url
+HEADERS = {
+    'Authorization': f'Bearer {settings.FLUTTERWAVE_SK}',
+}
+def get_flutterwave_banks(country: str='NG') -> dict:
+    '''
+       Gets flutterwave available banks
+    '''
+    resp = requests.get(
+        f'{BASE_URL}banks/{country}',
+        headers=HEADERS
+    )# MAKES A GET REQUEST TO FLUTTER API
+    # Automatically json received to dict type
+    return resp.json()
+
+
+# transfer fw
+def intiate_flutterwave_transfer(
+        bank_code: str, account_number: int,
+        amount: str, refrence: str
+    ) -> dict:
+    data = {
+        'currency': 'NGN',
+        'narration': 'Scheduled Payment',
+        'debit_currency': 'NGN',
+        'amount': amount,
+        'account_bank': bank_code,
+        'account_number': account_number,
+
+    }
+    resp = requests.post(
+        f'{BASE_URL}transfers/',
+        data=json.dumps(data)
+        ,
+        headers=HEADERS
+    )
+    return resp.json()
