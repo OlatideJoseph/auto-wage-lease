@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
-from rest_framework import generics, decorators, response, views
+from rest_framework import generics, decorators, response, views, permissions
 from . import models
 from . import utils
 from . import serializers
@@ -9,6 +9,7 @@ from . import serializers
 class CreateSchedulePaymentAPIView(generics.CreateAPIView):
     serializer_class = serializers.SchedulePaymentSerializer
     queryset = models.SchedulePayment.objects.all()
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class ListUserAPIView(generics.ListAPIView):

@@ -3,11 +3,16 @@ To fully run the application you're required to open three terminal tab
 1. For redis-server
 2. For celery-api for redis
 3. Application server
+4. And postgres database
 ## Configurations
 ```bash
 pip install -r requirements.txt
 export PAYSTACK_API =$YOUR_API
 export MAIL_USER=$YOUR_MAIL_USER
+export DATABASE_NAME=$DATABASE_NAME
+export DATABASE_HOST=$DATABASE_HOST
+export DABASE_PORT=$DATABASE_PORT
+export DATABASE_PASSWORD=$DATABASE_PASSWORD
 
 ```
 *Linux and Windows Subsytem Linux*
