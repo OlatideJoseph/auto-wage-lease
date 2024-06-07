@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 
 class SchedulePayment(models.Model):
     account = models.CharField(max_length=10, unique=True)
-    bank_code = models.CharField(max_length=5)
+    bank_code = models.CharField(max_length=10)
     account_name = models.CharField(max_length=80)
     created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     amount = models.CharField(max_length=7, default='60000',
@@ -62,3 +62,4 @@ class FlutterWaveTransaction(models.Model):
 
     def __str__(self) -> str:
         return 'FW -%d' %(self.trsc_id)
+

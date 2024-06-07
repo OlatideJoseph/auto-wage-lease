@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from . import models
 from . import utils
+
+
 class SchedulePaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SchedulePayment
-        fields = ['account', 'bank_code','account_name', 'amount', 'pay_date', 'has_paid', 'created_by']
+        fields = ['account', 'bank_code','account_name', 'amount', 'pay_date', 'created_by']
 
     def create(self, validated_data):
         instance = super().create(validated_data)
@@ -16,6 +18,6 @@ class SchedulePaymentSerializer(serializers.ModelSerializer):
 
 class BankResolveSerializer(serializers.Serializer):
     account_number = serializers.CharField(max_length=10, required=True)
-    bank_code = serializers.CharField(max_length=5, required=True)
+    bank_code = serializers.CharField(max_length=10, required=True)
 
 

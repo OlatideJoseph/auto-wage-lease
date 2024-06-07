@@ -144,7 +144,7 @@ CELERY_BEAT_SCHEDULE = {
     }
 }
 # PAYSTACK Config
-PAYSTACK_API = os.getenv('PAYSTACK_API')
+PAYSTACK_API = "sk_test_c590329a01279f2ee05615a12e2f8ec590df50e4"#os.getenv('PAYSTACK_API')
 FLUTTERWAVE_SK = os.getenv('FLUTTERWAVE_SK')
 # Email Config
 EMAIL_USER = os.getenv('MAIL_USER')
