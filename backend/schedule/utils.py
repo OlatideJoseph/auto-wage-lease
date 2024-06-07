@@ -8,8 +8,8 @@ paystack_url = 'https://api.paystack.co/'
 
 def initiate_transfer_payment(amount: str, recipient: str, reference: str) -> dict:
     '''
-        This creates a transfer ref to be used with to be used
-        to finalize the trf based on status but won't be active since
+        This initiate a transfer for the account and can be queried later
+        based on status, but it won't work since
         paystack only allows transfer for registered business
     '''
     data = {
@@ -34,7 +34,8 @@ def resolve_account(account_number: str, bank_code: str) -> dict:
 
 def finalize_transfer(trf_ref: str) -> dict:
     '''
-       finalize a dummy ref and returns a transfer response
+        Only necessary for account thats turns otp for transfer
+        finalize a dummy ref and returns a transfer response
     '''
 
     return {'status': 'success'}
@@ -56,41 +57,41 @@ def create_transfer_recipient(account_number: str, bank_code: str, account_name:
             headers={'Authorization': f'Bearer {settings.PAYSTACK_API}'})
     return resp.json()
 
-# Flutter Wave
-BASE_URL = "https://api.flutterwave.com/v3/" #v3 api url
-HEADERS = {
-    'Authorization': f'Bearer {settings.FLUTTERWAVE_SK}',
-}
-def get_flutterwave_banks(country: str='NG') -> dict:
-    '''
-       Gets flutterwave available banks
-    '''
-    resp = requests.get(
-        f'{BASE_URL}banks/{country}',
-        headers=HEADERS
-    )# MAKES A GET REQUEST TO FLUTTER API
-    # Automatically json received to dict type
-    return resp.json()
+# Flutter Wave But Won't
+# BASE_URL = "https://api.flutterwave.com/v3/" #v3 api url
+# HEADERS = {
+#     'Authorization': f'Bearer {settings.FLUTTERWAVE_SK}',
+# }
+# def get_flutterwave_banks(country: str='NG') -> dict:
+#     '''
+#        Gets flutterwave available banks
+#     '''
+#     resp = requests.get(
+#         f'{BASE_URL}banks/{country}',
+#         headers=HEADERS
+#     )# MAKES A GET REQUEST TO FLUTTER API
+#     # Automatically json received to dict type
+#     return resp.json()
 
 
-# transfer fw
-def intiate_flutterwave_transfer(
-        bank_code: str, account_number: int,
-        amount: str, refrence: str
-    ) -> dict:
-    data = {
-        'currency': 'NGN',
-        'narration': 'Scheduled Payment',
-        'debit_currency': 'NGN',
-        'amount': amount,
-        'account_bank': bank_code,
-        'account_number': account_number,
+# # transfer fw
+# def intiate_flutterwave_transfer(
+#         bank_code: str, account_number: int,
+#         amount: str, refrence: str
+#     ) -> dict:
+#     data = {
+#         'currency': 'NGN',
+#         'narration': 'Scheduled Payment',
+#         'debit_currency': 'NGN',
+#         'amount': amount,
+#         'account_bank': bank_code,
+#         'account_number': account_number,
 
-    }
-    resp = requests.post(
-        f'{BASE_URL}transfers/',
-        data=json.dumps(data)
-        ,
-        headers=HEADERS
-    )
-    return resp.json()
+#     }
+#     resp = requests.post(
+#         f'{BASE_URL}transfers/',
+#         data=json.dumps(data)
+#         ,
+#         headers=HEADERS
+#     )
+#     return resp.json()
