@@ -34,8 +34,13 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-button {
+input, select{
+  border: 1px solid #646cff;
+  outline: none;
+  padding: 0.6em 1.2em;
+  margin: 5px 0;
+}
+input[class='disabled-input'],button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -46,14 +51,16 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+input[class='disabled-input']:hover, button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+input[class='disabled-input']:focus, button:focus,
+input[class='disabled-input']:focus-visible, button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+input{
+  width: 280px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -62,7 +69,7 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-  button {
+  input[class='disabled-input'], button {
     background-color: #f9f9f9;
   }
 }

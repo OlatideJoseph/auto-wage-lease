@@ -20,7 +20,6 @@ def check_pay_user():
             pay.pay_date.hour == timezone.now().hour]
     # initiate a transfer with the transfer recipient relationship
     # of the recipient table
-
     for pay in matches:
         if pay:
             print('Found a match')

@@ -39,8 +39,16 @@ function App() {
   }
   return (
     <>
+      <h1>Auto Schedule</h1>
       <form>
-        <input type='text' name='account_name' placeholder='account_name' value={accountName} disabled/> 
+        <input
+          className='disabled-input'
+          type='text'
+          name='account_name'
+          placeholder='account_name'
+          value={accountName}
+          disabled
+        /> 
         <div>
           <label htmlFor='bank'>
             Select Bank
@@ -62,16 +70,34 @@ function App() {
             Account Number
           </label>
           <br/>
-          <input id='accn' name='account_number' onChange={handleAccountNumber} type='text'/>
+          <input
+            id='accn'
+            name='account_number'
+            placeholder='account_number'
+            onChange={handleAccountNumber}
+            type='text'
+          />
           <br/>
           <label htmlFor='date'>Schedule Date & Time</label>
           <br/>
-          <input id='date' name='pay_date' type='datetime-local'/>
+          <input
+            placeholder='Date and Time'
+            id='date' name='pay_date'
+            type='datetime-local'
+          />
           <br/>
           <label>Amount</label>
           <br/>
-          <input id='amount' name='amount' type='text'/>
+          <input
+            placeholder='amount'
+            id='amount'
+            name='amount'
+            type='text'
+          />
         </div>
+        <button type='button'>
+          Save Payment Schedule
+        </button>
       </form>
     </>
   )
