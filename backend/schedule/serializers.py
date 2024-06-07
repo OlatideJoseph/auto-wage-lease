@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from . import models
 from . import utils
@@ -23,5 +24,10 @@ class SchedulePaymentSerializer(serializers.ModelSerializer):
 class BankResolveSerializer(serializers.Serializer):
     account_number = serializers.CharField(max_length=10, required=True)
     bank_code = serializers.CharField(max_length=10, required=True)
+
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['pk', 'username']
 
 

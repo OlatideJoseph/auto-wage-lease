@@ -1,5 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
-from rest_framework import generics, decorators, response
+from rest_framework import generics, decorators, response, views
 from . import models
 from . import utils
 from . import serializers
@@ -10,6 +11,12 @@ class CreateSchedulePaymentAPIView(generics.CreateAPIView):
     queryset = models.SchedulePayment.objects.all()
 
 
+class ListUserAPIView(generics.ListAPIView):
+    '''
+        The lists all user view
+    '''
+    serializer_class = serializers.UserListSerializer
+    queryset = get_user_model().objects.all()
 
 @decorators.api_view(['GET'])
 def resolve_account(request):

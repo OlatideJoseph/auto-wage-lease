@@ -5,20 +5,26 @@ import './App.css'
 /* url to make request to */
 const apiUrl = 'https://api.paystack.co/'
 const url = 'http://localhost:8000/'
-function App() {
+
+const App = ()=> {
   const [banks, setBanks] = React.useState([])
   const [accountName, setAccountName] = React.useState('')
   const [bankCode, setBankCode] = React.useState('')
   const [accountNumber, setAccountNumber] = React.useState('')
-  
+  const [users, setUsers] = React.useState([])
+
   React.useEffect(()=>{
     axios.get(`${apiUrl}bank?currency=NGN`)
     .then(resp => resp.data)
     .then(data => {setBanks(data.data)})
+    /*sets the users*/
+    axios.get(`${url}user-list/`)
+    .then(resp => resp.data)
+    .then(data => {setUsers(data)})
   }, [])
   /*Account Number Effects*/
   React.useEffect(() => {
-    if (accountNumber.length == 10){
+    if (accountNumber.length == 10 && bankCode){
       axios.get(`${url}bank-resolve/?account_number=${accountNumber}&bank_code=${bankCode}`)
       .then(resp => resp.data)
       .then(data => {
@@ -31,12 +37,14 @@ function App() {
       })
     }
   }, [accountNumber, bankCode])
+
   const handleAccountNumber = (event) => {
     const accn = event.target.value
     if (accn.length == 10){
       setAccountNumber(accn)
     }
   }
+
   return (
     <>
       <h1>Auto Schedule</h1>
@@ -94,6 +102,21 @@ function App() {
             name='amount'
             type='text'
           />
+          <br/>
+          <label htmlFor='created_by'>
+            Select Users
+          </label>
+          <br/>
+          <select
+            name='created_by'
+            id='created_by'
+          >
+            {
+              users.map(i => (
+                <option key={i.pk} value={i.pk}>{i.username}</option>
+              ))
+            }
+          </select>
         </div>
         <button type='button'>
           Save Payment Schedule
