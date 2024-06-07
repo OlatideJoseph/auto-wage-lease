@@ -21,12 +21,19 @@ class SchedulePayment(models.Model):
 
     @classmethod
     def not_paid(cls):
+        '''
+            Checks if queries all the data of not paid
+        '''
         return cls.objects.filter(has_paid=False)
 
     @classmethod
     def not_paid_today(cls):
+        '''
+            Filters the not_paid classmethod
+            by today
+        '''
         return [ins for ins in cls.not_paid() if \
-            (ins.pay_date.day >= timezone.now().day)
+            (ins.pay_date.day == timezone.now().day)
         ]
 
 class TransferRecipient(models.Model):
@@ -47,7 +54,7 @@ class Transaction(models.Model):
         return f'Transaction {self.refrence} {status}'
 
 class PaidPayment(models.Model):
-    date_paid = models.DateTimeField(auto_now_add=True)
+    date_paid = models.DateTimeField(default=timezone.now)
     schedule_pay = models.ForeignKey(SchedulePayment, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -41,10 +41,15 @@ const LoginPage = ({ url }) => {
   React.useEffect(()=>{
     console.log(password, username)
   }, [password, username])
+
+  const handleSubmit = (event) => {
+    const form = document.querySelector('#form')
+    axios.post(`${url}login`)
+  }
   return (
     <div className='login-page'>
       <h1>LoginPage</h1>
-      <form method='post'>
+      <form id='form'  method='post'>
         <label htmlFor='username'>
           Username:
         </label>

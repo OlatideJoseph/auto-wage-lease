@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from rest_framework import serializers
 from . import models
 from . import utils
@@ -32,6 +33,16 @@ class SchedulePaymentSerializer(serializers.ModelSerializer):
         validated_data['created_by'] = user
         return super().save()
 
+    def validate_pay_date(self, value):
+        '''
+           Since datetime must be today or future date 
+            Checks if the pay_date is either today or future
+        '''
+        date_difference = value - timezone.now()
+        print(date_difference)
+        if (date_difference.days < 0):
+            raise serializers.ValidationError('Schedule date must be either today or a future date')
+        return value
 
 class BankResolveSerializer(serializers.Serializer):
     account_number = serializers.CharField(max_length=10, required=True)

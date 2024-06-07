@@ -1,6 +1,10 @@
 # Introduction
 A payment scheduler program that pays a particular account at a particular date and time(once)
 
+**Details**
+- Payment Gateway
+- Notification (mail)
+- Scheduling payments
 # Installation
 *Prerequisite*:
 - Python
