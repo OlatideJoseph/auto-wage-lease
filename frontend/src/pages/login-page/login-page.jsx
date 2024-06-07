@@ -46,6 +46,7 @@ const LoginPage = ({ url }) => {
     const form = document.querySelector('#form')
     axios.post(`${url}login`)
   }
+  
   return (
     <div className='login-page'>
       <h1>LoginPage</h1>
@@ -72,6 +73,7 @@ const LoginPage = ({ url }) => {
           id='password'
         />
         <br/>
+        <span>Need an account? <a href='/registration'>Register</a></span><br/>
         <button type='button'>
           Login
         </button>

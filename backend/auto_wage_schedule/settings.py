@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'django_celery_beat',
     # Local Application
     'schedule.apps.ScheduleConfig',
@@ -81,8 +83,18 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
+        'rest_framework.authentication.SessionAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ]
+}
+
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_SECURE': True,
+    'JWT_AUTH_COOKIE': 'my-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+    'JWT_AUTH_HTTPONLY': True,
+    'JWT_AUTH_SAMESITE': 'Lax',
 }
 
 CORS_ALLOWED_ORIGINS = [
@@ -92,6 +104,9 @@ CORS_ALLOWED_ORIGINS = [
 
 WSGI_APPLICATION = 'auto_wage_schedule.wsgi.application'
 
+# Sites
+
+SITE_ID = 1
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

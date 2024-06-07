@@ -7,6 +7,8 @@ const RegistrationPage = ({url}) => {
     <div className='registration-page'>
       <h1>Registration Page</h1>
       <form className='register-form'>
+        
+        <span>Already have an account? <a href='/login'>Login</a></span><br/>
         <button type='button'>
           Submit Data
         </button>
