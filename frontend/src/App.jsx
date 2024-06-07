@@ -2,6 +2,7 @@ import * as React from 'react'
 import axios from 'axios'
 import Schedule from './components/schedule/schedule'
 import LoginPage from './pages/login-page/login-page'
+import RegistrationPage from './pages/registration-page/registration-page'
 import './App.css'
 
 /* url to make request to */
@@ -16,6 +17,9 @@ const App = ()=> {
         url={url}
       />
       <LoginPage
+        url={url}
+      />
+      <RegistrationPage
         url={url}
       />
     </>

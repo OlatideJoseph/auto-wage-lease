@@ -1,6 +1,6 @@
 # Introduction
 A payment scheduler program that pays a particular account at a particular date and time(once)
-
+an notifies the user that creates the schedule once it's done
 **Details**
 - Payment Gateway
 - Notification (mail)

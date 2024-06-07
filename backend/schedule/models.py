@@ -57,7 +57,7 @@ class PaidPayment(models.Model):
     date_paid = models.DateTimeField(default=timezone.now)
     schedule_pay = models.ForeignKey(SchedulePayment, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Paid Account:{self.schedule_pay.account} on {self.date_paid}'
 
 
