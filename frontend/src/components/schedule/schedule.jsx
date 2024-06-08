@@ -41,7 +41,7 @@ const Schedule = ({ apiUrl, url }) => {
     }
   }
   const handleSchedulePayment = () => {
-    let token = localStorage.getItem
+    let token = localStorage.getItem('refresh-token')
     axios.post(`${url}/`, 
       document.querySelector('#form'),
       {
@@ -51,7 +51,7 @@ const Schedule = ({ apiUrl, url }) => {
       }
     )
     .then(resp => resp.data)
-    .then(data => {alert(data)})
+    .then(data => {alert(`Schedule Created`)})
     .catch(error => {alert("Sorry an error occured")})
   }
   return (
@@ -64,7 +64,7 @@ const Schedule = ({ apiUrl, url }) => {
           name='account_name'
           placeholder='account_name'
           value={accountName}
-          disabled
+          contentEditable={false}
         /> 
         <div>
           <label htmlFor='bank'>
@@ -89,7 +89,7 @@ const Schedule = ({ apiUrl, url }) => {
           <br/>
           <input
             id='accn'
-            name='account_number'
+            name='account'
             placeholder='account_number'
             onChange={handleAccountNumber}
             type='text'
@@ -127,7 +127,7 @@ const Schedule = ({ apiUrl, url }) => {
             }
           </select>*/}
         </div>
-        <button type='button'>
+        <button onClick={handleSchedulePayment} type='button'>
           Save Payment Schedule
         </button>
       </form>

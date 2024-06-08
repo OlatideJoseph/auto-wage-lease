@@ -62,7 +62,7 @@ const LoginPage = ({ url, user, setUser }) => {
         }
       })
       .then(resp => resp.data)
-      .then(data => {setUser})
+      .then(data => {setUser(data)})
       .catch(error => {alert('Error Occured')})
     })
   }
