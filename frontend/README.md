@@ -9,4 +9,5 @@ run the following to the install the dependencies
 
 ```bash
 npm install
+npm run dev
 ```
