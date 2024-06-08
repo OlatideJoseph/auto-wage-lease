@@ -10,6 +10,7 @@ const RegistrationPage = ({url, user, setUser}) => {
     )
     .then(resp => resp.data)
     .then(data => {
+      alert("User created successfully")
       alert(JSON.stringify(data))
     })
     .catch(error => {

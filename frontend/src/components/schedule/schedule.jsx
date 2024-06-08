@@ -52,7 +52,13 @@ const Schedule = ({ apiUrl, url, logOut }) => {
     )
     .then(resp => resp.data)
     .then(data => {alert(`Schedule Created`)})
-    .catch(error => {alert("Sorry an error occured")})
+    .catch(error => {
+      let resp = error.response
+      let resp_keys = Object.keys(resp.data)
+      resp_keys.forEach(v => {
+        alert(resp.data[v][0])
+      })
+    })
   }
   return (
     <>

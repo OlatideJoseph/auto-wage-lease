@@ -8,8 +8,8 @@ import Redirect from './components/redirect/redirect.jsx'
 import './App.css'
 
 /* url to make request to */
-const apiUrl = 'https://api.paystack.co/'
-const url = 'http://localhost:8000/'
+const apiUrl = import.meta.env.VITE_API_URL
+const url = import.meta.env.VITE_BASE_URL
 
 const App = ()=> {
   const [user, setUser] = React.useState({})
