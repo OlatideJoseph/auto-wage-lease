@@ -29,6 +29,9 @@ const App = ()=> {
   }, [])
 
   const logOut = () => {
+    axios.get(`${url}dj-rest-auth/logOut/`, {
+
+    })
     setUser({})
     localStorage.clear()
   }
@@ -63,7 +66,7 @@ const App = ()=> {
             />)
           }
           />
-          <Route
+          {/*<Route
             path='/registration'
             element={
               (user.username) ? (
@@ -76,7 +79,7 @@ const App = ()=> {
                 />
               )
             }
-          />
+          />*/}
       </Routes>
     </>
   )

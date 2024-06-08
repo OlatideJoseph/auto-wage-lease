@@ -93,7 +93,7 @@ const LoginPage = ({ url, user, setUser }) => {
           id='password'
         />
         <br/>
-        <span>Need an account? <a href='/registration'>Register</a></span><br/>
+        {/*<span>Need an account? <a href='/registration'>Register</a></span><br/>*/}
         <button onClick={handleSubmit} type='button'>
           Login
         </button>
