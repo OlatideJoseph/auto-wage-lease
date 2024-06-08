@@ -80,7 +80,7 @@ const App = ()=> {
             />)
           }
           />
-          {/*<Route
+          <Route
             path='/registration'
             element={
               (user.username) ? (
@@ -93,7 +93,7 @@ const App = ()=> {
                 />
               )
             }
-          />*/}
+          />
       </Routes>
     </>
   )

@@ -37,9 +37,9 @@ def check_pay_user():
                 pay.save()
                 models.PaidPayment.objects.create(schedule_pay=pay)
                 # Notifies the users
-                send_mail(
-                    f'Scheduled Transfer at {str(pay.pay_date)} succeas',
-                    f'transfer successful for {pay.account_name}',
-                    'no-reply@auto-wage-lease.com',
-                    [pay.created_by.email]
-                )
+        send_mail(
+            f'Scheduled Transfer at {str(pay.pay_date)} success',
+            f'transfer successful for {pay.account_name}',
+            'no-reply@auto-wage-lease.com',
+            [pay.created_by.email]
+        )
