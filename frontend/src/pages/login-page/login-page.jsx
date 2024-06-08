@@ -38,9 +38,6 @@ const LoginPage = ({ url, user, setUser }) => {
 
   }, {username: '', statisfied: false })
   /*PRINTS THE STATE DISPATCHER*/
-  React.useEffect(()=>{
-    console.log(password, username)
-  }, [password, username])
 
   const handleSubmit = (event) => {
     const form = document.querySelector('#form')
@@ -55,6 +52,7 @@ const LoginPage = ({ url, user, setUser }) => {
     .then( resp => resp.data )
     .then(data => {
       localStorage.setItem('refresh-token', `${data.key}`)
+      // Gets User data
       axios.get(`${url}dj-rest-auth/user/`,
       {
         headers:{
@@ -63,7 +61,20 @@ const LoginPage = ({ url, user, setUser }) => {
       })
       .then(resp => resp.data)
       .then(data => {setUser(data)})
-      .catch(error => {alert('Error Occured')})
+      .catch(error => {
+        let resp = error.response
+        let resp_keys = Object.keys(resp.data)
+        resp_keys.forEach(v => {
+          alert(resp.data[v][0])
+        })
+      })
+    })
+    .catch(error => {
+      let resp = error.response
+      let resp_keys = Object.keys(resp.data)
+      resp_keys.forEach(v => {
+        alert(resp.data[v][0])
+      })
     })
   }
   
