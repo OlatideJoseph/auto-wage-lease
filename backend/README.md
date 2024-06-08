@@ -4,6 +4,7 @@ To fully run the application you're required to open three terminal tab
 2. For celery-api for redis
 3. Application server
 4. And postgres database
+
 ## Configurations
 ```bash
 pip install -r requirements.txt
@@ -15,6 +16,11 @@ export DATABASE_USER=$DATABASE_USER
 export DABASE_PORT=$DATABASE_PORT
 export DATABASE_PASSWORD=$DATABASE_PASSWORD
 
+```
+To create a user for the application
+run the following command
+```bash
+python manage.py createsuperuser --username $username --email $email
 ```
 *Linux and Windows Subsytem Linux*
 ```bash
