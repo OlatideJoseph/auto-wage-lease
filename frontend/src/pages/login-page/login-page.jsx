@@ -2,7 +2,7 @@ import * as React from 'react'
 import axios from 'axios'
 import './login-page.css'
 
-const LoginPage = ({ url }) => {
+const LoginPage = ({ url, user, setUser }) => {
   const [password, passwordDispatcher] = React.useReducer((state, action) => {
     switch (action.type){
       case 'SET_PASSWORD':
@@ -44,7 +44,27 @@ const LoginPage = ({ url }) => {
 
   const handleSubmit = (event) => {
     const form = document.querySelector('#form')
-    axios.post(`${url}login`)
+    axios.post(`${url}dj-rest-auth/login/`,
+      document.querySelector('#form'),
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    .then( resp => resp.data )
+    .then(data => {
+      localStorage.setItem('refresh-token', `${data.key}`)
+      axios.get(`${url}dj-rest-auth/user/`,
+      {
+        headers:{
+          'Authorization': `Token ${data.key}`
+        }
+      })
+      .then(resp => resp.data)
+      .then(data => {setUser})
+      .catch(error => {alert('Error Occured')})
+    })
   }
   
   return (
@@ -74,7 +94,7 @@ const LoginPage = ({ url }) => {
         />
         <br/>
         <span>Need an account? <a href='/registration'>Register</a></span><br/>
-        <button type='button'>
+        <button onClick={handleSubmit} type='button'>
           Login
         </button>
       </form>

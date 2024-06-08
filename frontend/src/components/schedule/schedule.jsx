@@ -7,16 +7,16 @@ const Schedule = ({ apiUrl, url }) => {
   const [accountName, setAccountName] = React.useState('')
   const [bankCode, setBankCode] = React.useState('')
   const [accountNumber, setAccountNumber] = React.useState('')
-  const [users, setUsers] = React.useState([])
+  // const [users, setUsers] = React.useState([])
 
   React.useEffect(()=>{
     axios.get(`${apiUrl}bank?currency=NGN`)
     .then(resp => resp.data)
     .then(data => {setBanks(data.data)})
     /*sets the users*/
-    axios.get(`${url}user-list/`)
-    .then(resp => resp.data)
-    .then(data => {setUsers(data)})
+    // axios.get(`${url}user-list/`)
+    // .then(resp => resp.data)
+    // .then(data => {setUsers(data)})
   }, [])
   /*Account Number Effects*/
   React.useEffect(() => {
@@ -40,11 +40,24 @@ const Schedule = ({ apiUrl, url }) => {
       setAccountNumber(accn)
     }
   }
-
+  const handleSchedulePayment = () => {
+    let token = localStorage.getItem
+    axios.post(`${url}/`, 
+      document.querySelector('#form'),
+      {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      }
+    )
+    .then(resp => resp.data)
+    .then(data => {alert(data)})
+    .catch(error => {alert("Sorry an error occured")})
+  }
   return (
     <>
       <h1>Auto Schedule</h1>
-      <form>
+      <form id='form'>
         <input
           className='disabled-input'
           type='text'
@@ -99,7 +112,7 @@ const Schedule = ({ apiUrl, url }) => {
             type='text'
           />
           <br/>
-          <label htmlFor='created_by'>
+          {/*<label htmlFor='created_by'>
             Select Users
           </label>
           <br/>
@@ -112,7 +125,7 @@ const Schedule = ({ apiUrl, url }) => {
                 <option key={i.pk} value={i.pk}>{i.username}</option>
               ))
             }
-          </select>
+          </select>*/}
         </div>
         <button type='button'>
           Save Payment Schedule

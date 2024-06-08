@@ -39,12 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # 3rd Party Apps
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'dj_rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    # 'allauth',
     'django_celery_beat',
     # Local Application
     'schedule.apps.ScheduleConfig',
@@ -60,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'auto_wage_schedule.urls'
@@ -82,20 +87,25 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     ]
 }
 
-REST_AUTH = {
-    'USE_JWT': True,
-    'JWT_AUTH_SECURE': True,
-    'JWT_AUTH_COOKIE': 'my-auth',
-    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
-    'JWT_AUTH_HTTPONLY': True,
-    'JWT_AUTH_SAMESITE': 'Lax',
-}
+# CORS_ALLOWED_HEADERS = [
+#     'WWW-Authenticate'
+# ]
+
+# REST_AUTH = {
+#     'USE_JWT': True,
+#     'JWT_AUTH_SECURE': True,
+#     'JWT_AUTH_COOKIE': 'my-auth',
+#     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+#     'JWT_AUTH_HTTPONLY': True,
+#     'JWT_AUTH_SAMESITE': 'Lax',
+# }
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
@@ -112,13 +122,14 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'postgresql': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgresql',
+        'NAME': 'schedule',
+        'USER': 'postgres',
         'PASSWORD': 'postgresql',
         'HOST': 'localhost',
         'PORT': '5432'

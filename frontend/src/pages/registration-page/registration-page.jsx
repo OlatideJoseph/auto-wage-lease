@@ -2,7 +2,7 @@ import * as React from 'react'
 import './registration-page.css'
 
 
-const RegistrationPage = ({url}) => {
+const RegistrationPage = ({url, user, setUser}) => {
 	return(
     <div className='registration-page'>
       <h1>Registration Page</h1>
