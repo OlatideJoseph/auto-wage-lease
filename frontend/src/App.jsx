@@ -29,11 +29,25 @@ const App = ()=> {
   }, [])
 
   const logOut = () => {
-    axios.get(`${url}dj-rest-auth/logOut/`, {
-
-    })
-    setUser({})
-    localStorage.clear()
+    let token = localStorage.getItem('refresh-token')
+    let con = confirm('Are you sure you want to logout ?')
+    if (con){
+      axios.post(`${url}dj-rest-auth/logout/`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+      .then(resp => resp.data)
+      .then(data => {
+        setUser({})
+        localStorage.clear()
+        alert('User logged out successfully')
+      }).catch(error => {
+        alert('error occured with logging out')
+      })
+    } else {
+      console.log('false')
+    }
   }
   return (
     <>

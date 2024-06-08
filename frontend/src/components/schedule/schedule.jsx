@@ -2,7 +2,7 @@ import * as React from 'react'
 import axios from 'axios'
 import './schedule.css'
 
-const Schedule = ({ apiUrl, url }) => {
+const Schedule = ({ apiUrl, url, logOut }) => {
 	const [banks, setBanks] = React.useState([])
   const [accountName, setAccountName] = React.useState('')
   const [bankCode, setBankCode] = React.useState('')
@@ -57,6 +57,9 @@ const Schedule = ({ apiUrl, url }) => {
   return (
     <>
       <h1>Auto Schedule</h1>
+      <a href="#" onClick={logOut}>
+        LogOut
+      </a>
       <form id='form'>
         <input
           className='disabled-input'
