@@ -99,7 +99,7 @@ const LoginPage = ({ url, user, setUser }) => {
         <input
           placeholder='password'
           onChange={(e)=>{passwordDispatcher({type:'SET_PASSWORD', payload: e.target.value})}}
-          type='text'
+          type='password'
           name='password'
           id='password'
         />
