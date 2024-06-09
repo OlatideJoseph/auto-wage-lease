@@ -23,3 +23,7 @@ an notifies the user that creates the schedule once it's done
 ## First command
 **Visit subfolder for requirements installation**
 
+# video
+
+1. - https://icecreamapps.com/v/2ugnmvu
+2. - https://icecreamapps.com/v/hcene3c
