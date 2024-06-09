@@ -25,5 +25,5 @@ an notifies the user that creates the schedule once it's done
 
 # video
 
-1. - (Video1)[https://icecreamapps.com/v/2ugnmvu]
-2. - (Video2)[https://icecreamapps.com/v/hcene3c]
+1. - [Video1](https://icecreamapps.com/v/2ugnmvu)
+2. - [Video2](https://icecreamapps.com/v/hcene3c)
